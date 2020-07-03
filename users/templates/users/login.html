@@ -1,0 +1,28 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="login-container">
+  <style media="screen">
+    .site-header{display:none;}
+    .asteriskField{display:none;}
+  </style>
+    <img src="../../media/logo.png" style="width:15%; margin-bottom: 2rem;" />
+    <form method="POST" class="form login">
+        {% csrf_token %}
+        <fieldset class="form__field">
+            {{ form | crispy }}
+        </fieldset>
+        <div class="form__field">
+            <button class="btn btn-outline-primary" type="submit">Login</button>
+        </div>
+    </form>
+    <div class="pt-3" style="text-align: center;">
+        <small class="text-muted" style="text-transform:uppercase">
+            Not a member? <a class="ml-2" style="color:white" href="{% url 'register-users' %}">Sign up</a>
+        </small><br><br>
+        <small style="color:white; text-transform:uppercase;font-size: 10px;">
+          Made with ❤ by <img src="../../media/sk.png" style="width:7%;margin-bottom: 7px;"/>
+        </small>
+    </div>
+</div>
+{% endblock content %}

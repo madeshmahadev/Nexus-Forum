@@ -1,0 +1,35 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <style media="screen">
+    .site-header{display:none;}
+     .btn-dark{
+      padding: 12px 80px 12px 80px;
+      font-weight: bold;
+      background-color: #dc3545;
+      border: 0;
+      border-radius: 25px;
+    }
+  </style>
+<div class="register-container">
+  <img src="../../media/logo.png" style="width:15%; margin-bottom: 2rem;" />
+    <form method="POST" class="form register">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="white-important" style="font-size: 16px;text-align: center;">
+                Register a new account
+            </legend>
+            {{ form | crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-primary" type="submit">Sign Up</button>
+            <a class="btn btn-dark" href="{% url 'login' %}">Login</a>
+        </div>
+    </form>
+    <div class="pt-3" style="text-align: center;">
+        <small style="color:white; text-transform:uppercase;font-size: 10px;">
+          Made with ❤ by <img src="../../media/sk.png" style="width:7%;margin-bottom: 7px;"/>
+        </small>
+    </div>
+</div>
+{% endblock content %}
