@@ -15,13 +15,9 @@ the campus. It's a secure portal that allows users to communicate harassment and
 the status of the grievances.
 
 ### Usage and Benefits:
-• Students can tag Faculties or Officials directly if they are facing any troubles inside campus.
-• It will help students to know the official announcements
-• This forum has Likes/Dislike/Comment sections like any social media so that if there are any spam or
-vulnerability, officials can delete them or share their thoughts about it.
-• Department or Students’ Club can broadcast their posters, register forms, updates and event photos.
-• Alumni can help students get placed at their respective organizations, provide Mentorship and
-Scholarships, also can play an active role in voluntary programmes like mentoring students in their
-areas of expertise by using Nexus Forum a medium to broadcast.
-• The account is encrypted such a way that none can try to access any officials account if happen so
-they will be intimated quickly.
+*  Students can tag Faculties or Officials directly if they are facing any troubles inside campus.
+*  It will help students to know the official announcements
+*  This forum has Likes/Dislike/Comment sections like any social media so that if there are any spam or vulnerability, officials can delete them or share their thoughts about it.
+*  Department or Students’ Club can broadcast their posters, register forms, updates and event photos.
+*  Alumni can help students get placed at their respective organizations, provide Mentorship and Scholarships, also can play an active role in voluntary programmes like mentoring students in their areas of expertise by using Nexus Forum a medium to broadcast.
+*  The account is encrypted such a way that none can try to access any officials account if happen so they will be intimated quickly.
