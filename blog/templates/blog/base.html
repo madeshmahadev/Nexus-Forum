@@ -3,6 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
@@ -12,6 +13,21 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-zrnmn8R8KkWl12rAZFt4yKjxplaDaT7/EUkKm7AovijfrQItFWR7O/JJn4DAa/gx" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{% static 'blog/custom.css' %}">
+
+        <script>
+        (function() {
+            var h, a, f;
+            a = document.getElementsByTagName('link');
+            for (h = 0; h < a.length; h++) {
+            f = a[h];
+            if (f.rel.toLowerCase().match(/stylesheet/) && f.href) {
+              var g = f.href.replace(/(&|\?)rnd=\d+/, '');
+              f.href = g + (g.match(/\?/) ? '&' : '?');
+              f.href += 'rnd=' + (new Date().valueOf());
+            }
+            } // for
+          })()
+        </script>        
         <title>Nexus Forum</title>
     </head>
   <body>

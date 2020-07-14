@@ -4,37 +4,48 @@
     <div class="row">
         <div class="col-12 col-md-3 pr-4 dont-move">
             <div class="profile-section">
-            <article class="media content-section" style="height: 140px; width: 100%">
+            <article class="media content-section" style="height: auto; width: 100%">
                 {%  if user_profile != None %}
-                    <div class="mt-2 d-flex full-width align-items-center">
+                    <div class="mt-2 d-flex full-width align-items-center background-svg">
                         <img
                            class="rounded-circle mr-3 img-fluid"
                            style="width: 90px; height: 90px;"
                            src="{{ user_profile.profile.image.url }}">
                         <div>
-                            <h4 style="text-align: left"
+                            <h4 style="text-align: center"
                                     class="white-important">
                                 {{ user_profile.username }}
                             </h4>
+                            <p style="text-align: center; margin-bottom:2rem"
+                                                  class="white-important bio-panel">
+                                              {{ user_profile.profile.bio }}
+                                          </p>
 
                         </div>
                     </div>
                 {%  else %}
+
                     <div class="mt-2 d-block full-width" style="text-align: center;">
-                        <img
-                           class="rounded-circle mr-3"
-                           style="width: 90px; height: 90px; margin-bottom:1rem;"
-                           src="{{ user.profile.image.url }}">
-                        <div>
-                            <h4 style="text-align: center"
+                       <div class="dp-containter">
+                        <img class="rounded-circle mr-3" style="width: 90px; height: 90px; margin-bottom:1rem;" src="{{ user.profile.image.url }}" id="userdp"  alt="{{ user.firstname }} {{ user.lastname }} " />
+                            <h3 style="text-align: center; font-size:1.4em;"
                                     class="white-important">
-                                {{ user.username }}
+                                {{ user.first_name }} {{ user.last_name }}
+                            </h3>
+                            <h4 style="text-align: center; font-size:1.2em;"
+                                    class="white-important">
+                                @{{ user.username }}
                             </h4>
                         </div>
+                        <p style="text-align: left;"
+                                class="white-important bio-panel">
+                            {{ user.profile.bio }}
+                        </p>
                     </div>
+
                 {%  endif %}
             </article>
-            <article class="media content-section" style="margin-top:2rem; text-align:center">
+            <article class="media content-section" style="text-align:center">
                 <div class="row full-width pl-2">
                     {%  if user_profile != None %}
                         <div class="col-6">
@@ -108,7 +119,7 @@
             <div class="full-width row">
                 <div class="col-6">
                     <h3 class="white-important mb-3">
-                        Your Feeds
+                        Current Feeds
                     </h3>
                 </div>
                  <div class="col-6 no-padding">
@@ -166,13 +177,13 @@
 
                                     <!-- Like Buttons Here -->
                                     <a href="#" onClick="document.getElementById('likebutton').submit()">
-                                            {% if post.likes == 1  %}
-                                            <i style="color: red; font-size: 16px;" class="far fa-heart"></i>
+                                            {% if post.likes >= 1  %}
+                                              <i style="color: red; font-size: 16px;" class="fa fa-heart"></i>
                                             {% else %}
-                                            <i style=" font-size: 16px;" class="far fa-heart"></i>
+                                              <i style=" font-size: 16px;" class="fa fa-heart"></i>
                                             {% endif %}
 
-                                             {{post.likes}} like(s)
+                                             {{post.likes}}
 
                                     </a>
 
@@ -185,7 +196,7 @@
                                 </small>
                                 <small style="opacity: 0.4; margin-left:15px;">
                                     <a href="/post/{{post.id}}/">
-                                        <i style=" font-size: 16px;" class="far fa-comment"></i> {{ post.number_of_comments }} comment(s)
+                                        <i style=" font-size: 16px;" class="fa fa-comment"></i> {{ post.number_of_comments }}
                                     </a>
 
                                 </small>
@@ -231,6 +242,54 @@
                 {% endif %}
             </div>
         </div>
+
+        <!-- ENLARGE DP -->
+        <div id="dp" class="modal">
+          <div class="content">
+
+            {%  if user_profile != None %}
+            <div class="card">
+              <span class="close">&times;</span>
+              <div class="firstinfo"><img  id="dp_image" />
+                <div class="profileinfo">
+                  <h1>{{user_profile.first_name}} {{user_profile.last_name}}</h1>
+                  <h3>@{{user_profile.username}}</h3>
+                  <p class="bio"></p>
+                </div>
+              </div>
+            </div>
+            <div class="badgescard"> <span class="devicons devicons-django"></span><span class="devicons devicons-python"> </span><span class="devicons devicons-codepen"></span><span class="devicons devicons-javascript_badge"></span><span class="devicons devicons-gulp"></span><span class="devicons devicons-angular"></span><span class="devicons devicons-sass"> </span></div>
+
+            {%  else %}
+            <div class="card">
+              <span class="close">&times;</span>
+              <div class="firstinfo"><img  id="dp_image" />
+                <div class="profileinfo">
+                  <h1>{{user.first_name}} {{user.last_name}}</h1>
+                  <h3>@{{user.username}}</h3>
+                  <p class="bio">
+                    Register No. <span>{{user.profile.registrationnumber}}</span><br>
+                    Deparment <span>{{user.profile.department}}</span> <br>
+                    Designation <span>Student</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="badgescard">
+              <p class="data" >📧 {{user.email}}</p>
+              <p class="data" >📞 {{user.profile.contact}}</p>
+            </div>
+
+            {% endif %}
+          </div>
+      </div>
+
+
+
+
+
+
+
         <div class="col-12 col-md-3 dont-move">
             <form action="{% url 'search' %}" method="post">{% csrf_token %}
                 <div class="search-container">
@@ -248,7 +307,7 @@
 
                     <div class="row ">
                         <div class="col-12">
-                            <h3 style="font-size: 16px;text-align: center;">Who to follow</h3>
+                            <h3 style="font-size: 16px;text-align: center;">Profile Suggetions</h3>
                         </div>
                         <ul class="col-12 mt-2">
                             {% for user in all_users %}
@@ -266,7 +325,6 @@
                                                {{ user.username }}
                                            </a>
                                        </div>
-                                        <p>{{ user.email }}</p>
                                     </div>
                                 </li>
                             {% endfor %}
@@ -278,12 +336,29 @@
                 {% endif %}
                 <p>
                   <a href="">Terms & Conditions</a><br>
-                  <a href="">Privacy policy</a><br>
+                  <a href="">Privacy Policy</a><br>
                   <small style="color:white; text-transform:uppercase;font-size: 10px;">
                     Made with ❤ by <img src="../../media/sk.png" style="width:20%;margin-bottom: 6px;"/>
                   </small>
                 </p>
 
         </div>
+
     </div>
+
+
+    <script>
+    var modal = document.getElementById("dp");
+    var img = document.getElementById("userdp");
+    var modalImg = document.getElementById("dp_image");
+    var captionText = document.getElementById("caption");
+    img.onclick = function(){
+      modal.style.display = "block";
+      modalImg.src = this.src;
+    }
+   var span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    </script>
 {% endblock content %}
