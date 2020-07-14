@@ -9,6 +9,8 @@ from django.db.models import Count
 from .forms import NewCommentForm
 from django.contrib.auth.decorators import login_required
 
+from taggit.models import Tag
+
 
 def is_users(post_user, logged_user):
     return post_user == logged_user
@@ -114,7 +116,10 @@ class PostDetailView(DetailView):
         new_comment = Comment(content=request.POST.get('content'),
                               author=self.request.user,
                               post_connected=self.get_object())
+
+
         new_comment.save()
+
 
         return self.get(self, request, *args, **kwargs)
 
@@ -209,7 +214,7 @@ def postpreference(request, postid, userpreference):
                 valueobj=''
                 try:
                         obj= Preference.objects.get(user= request.user, post= eachpost)
-                        valueobj= obj.value 
+                        valueobj= obj.value
                         valueobj= int(valueobj)
                         userpreference= int(userpreference)
                         if valueobj != userpreference:
@@ -239,7 +244,7 @@ def postpreference(request, postid, userpreference):
                                 context= {'eachpost': eachpost,
                                   'postid': postid}
                                 return redirect('blog-home')
-                                
+
                 except Preference.DoesNotExist:
                         upref= Preference()
                         upref.user= request.user
@@ -251,7 +256,7 @@ def postpreference(request, postid, userpreference):
                         elif userpreference == 2:
                                 eachpost.dislikes +=1
                         upref.save()
-                        eachpost.save()                            
+                        eachpost.save()
 
                         context= {'post': eachpost,
                           'postid': postid}

@@ -229,7 +229,6 @@ input[type="file"]::-webkit-file-upload-button {
 }
 
 .who-to-follow{
-  border-top: 1px solid grey;
   padding: 3px;
   margin: 3px;
 }
